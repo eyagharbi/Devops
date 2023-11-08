@@ -13,7 +13,7 @@ services:
       - db:/var/lib/mysql
   # Spring Boot Application Service
   spring-app:
-    image: s1mch/devopsproject:BackImage
+    image: haifalaabidi/alpine
     container_name: SpringBack
     restart:  on-failure
     environment:
