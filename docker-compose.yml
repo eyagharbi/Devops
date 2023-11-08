@@ -13,7 +13,7 @@ services:
       - db:/var/lib/mysql
   # Spring Boot Application Service
   spring-app:
-    image: haifalaabidi/alpine
+    image: haifalaabidi/dockerhub
     container_name: SpringBack
     restart:  on-failure
     environment:
