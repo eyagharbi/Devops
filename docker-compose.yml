@@ -1,33 +1,27 @@
-version: "3.8"
+version: '3'
 services:
-  mysqldb:
-    image: mysql:5.7
+  mysql:
+    image: 'mysql:5.7'
+    container_name: mysql
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_DATABASE=timesheet_db
+      MYSQL_DATABASE: achatdb
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
       - db:/var/lib/mysql
-  app-achat :
-    depends_on:
-      - mysqldb
-    image: haifa/achat-devops:1.0.0
-    restart: on-failure
-    ports:
-      - 8082:8082
+  # Spring Boot Application Service
+  spring-app:
+    image: s1mch/devopsproject:BackImage
+    container_name: SpringBack
+    restart:  on-failure
     environment:
-      SPRING_APPLICATION_JSON:  '{
-        "spring.datasource.url": "jdbc:mysql://mysqldb:3306/achat_db?createDatabaseIfNotExist=true",
-        "spring.datasource.username": "root",
-        "spring.datasource.password": null,
-        "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQL5InnoDBDialect",
-        "spring.jpa.hibernate.ddl-auto": "update"
-      }'
-    stdin_open: true
-    tty: true
-volumes:
-  db:
-
-
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8282:8282"
+    depends_on:
+      - mysql
