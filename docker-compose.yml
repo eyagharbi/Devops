@@ -13,8 +13,8 @@ services:
       - db:/var/lib/mysql
   # Spring Boot Application Service
   spring-app:
-    image: eyagahrbi/dockerhub
-    container_name: SpringBack
+    image: eyagahrbi/dockerhub:SpringBack
+    container_name: Backend
     restart:  on-failure
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true
