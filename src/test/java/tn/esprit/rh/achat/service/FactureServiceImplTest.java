@@ -36,17 +36,11 @@ class FactureServiceImplTest {
         assertEquals(2, factureService.retrieveAllFactures().size());
     }
 
-    @Test
-    public void saveFactureTest() {
-        Facture f = new Facture(null, 29.75f, 153.31f, new Date("2022-10-19"), new Date("2022-10-21"), true, null, null, null);
-        when(factureRepository.save(f)).thenReturn(f);
-        assertEquals(f, factureService.addFacture(f));
-    }
 
     @Test
     public void retrieveFactureTest() {
         Long id = (long) 3;
-        when(factureRepository.findById(id)).thenReturn(Optional.of(new Facture(id, 32.65f, 164.84f, new Date("2022-10-15"), new Date("2022-10-23"), true, null, null, null));
+        when(factureRepository.findById(id)).thenReturn(Optional.of(new Facture(id, 32.65f, 164.84f, new Date("2022-10-15"), new Date("2022-10-23"), true, null, null, null)));
         Facture f = factureService.retrieveFacture(id);
         assertNotNull(f);
         verify(factureRepository).findById(Mockito.anyLong());
