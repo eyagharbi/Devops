@@ -14,11 +14,13 @@ services:
   spring-app:
     image: haifalaabidi/dockerhub
     container_name: SpringBack
-    restart:  on-failure
+    restart: on-failure
     ports:
       - "8282:8282"
     depends_on:
       - mysqldb
     volumes:
-     db:
+      - db:
 
+volumes:
+  db:
