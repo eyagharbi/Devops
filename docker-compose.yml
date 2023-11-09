@@ -13,7 +13,7 @@ services:
       - db:/var/lib/mysql
   # Spring Boot Application Service
   spring-app:
-    image: eyagahrbi/dockerhub:SpringBack
+    image: eyagahrbi/dockerhub:SpringImage
     container_name: Backend
     restart:  on-failure
     environment:
