@@ -25,3 +25,4 @@ services:
       - "8282:8282"
     depends_on:
       - mysql
+
