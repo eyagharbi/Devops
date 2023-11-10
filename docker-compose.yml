@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: achatdb
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3306:3306"
+      - "3307:3307"
     volumes:
       - achat_db_data:/var/lib/mysql
 
